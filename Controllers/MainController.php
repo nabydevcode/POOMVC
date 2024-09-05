@@ -5,9 +5,9 @@ namespace App\Controllers;
 class MainController
 {
 
-    public function index(...$var)
+    public function index()
     {
-        var_dump($var);
+
         echo " Une methode de la main controller ";
     }
 }

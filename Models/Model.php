@@ -6,24 +6,22 @@ use App\Core\Database;
 class Model extends Database
 {
 
-    public $table;
-    private $db;
+    protected $table;
+    protected $db;
     public function prepe($sql, array $attributes = null)
     {
         $this->db = Database::getinstance();
-        if ($attributes) {
+        if ($attributes != null) {
             $query = $this->db->prepare($sql);
             $query->execute($attributes);
-
         } else {
-
             $query = $this->db->query($sql);
         }
         return $query;
     }
     public function findAll()
     {
-        return $this->prepe('SELECT * FROM ' . $this->table);
+        return $this->prepe('SELECT * FROM ' . $this->table)->fetchAll();
     }
     public function find($id)
     {
@@ -50,7 +48,6 @@ class Model extends Database
     }
     public function createUpdate(Model $model, $attributes = null)
     {
-
         $champs = [];
         $valeurs = [];
         $inter = [];

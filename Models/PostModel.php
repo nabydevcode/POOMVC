@@ -11,11 +11,7 @@ class PostModel extends Model
     protected $titre;
     protected $message;
     protected $actif;
-
-
-
-
-
+    public $table = "post";
     /**
      * Get the value of id
      */
@@ -32,7 +28,6 @@ class PostModel extends Model
     public function setId($id)
     {
         $this->id = $id;
-
         return $this;
     }
 
@@ -52,7 +47,6 @@ class PostModel extends Model
     public function setTitre($titre)
     {
         $this->titre = $titre;
-
         return $this;
     }
 
@@ -72,7 +66,6 @@ class PostModel extends Model
     public function setMessage($message)
     {
         $this->message = $message;
-
         return $this;
     }
 
@@ -92,7 +85,6 @@ class PostModel extends Model
     public function setActif($actif)
     {
         $this->actif = $actif;
-
         return $this;
     }
 }
