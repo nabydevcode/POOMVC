@@ -1,16 +1,17 @@
 <?php
 namespace App\Models;
 use App\Core\Database;
-
-
 class Model extends Database
 {
 
     protected $table;
     protected $db;
+    public function __construct()
+    {
+        $this->db = Database::getInstance();
+    }
     public function prepe($sql, array $attributes = null)
     {
-        $this->db = Database::getinstance();
         if ($attributes != null) {
             $query = $this->db->prepare($sql);
             $query->execute($attributes);

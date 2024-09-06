@@ -1,13 +1,22 @@
 <?php
 use App\Core\Main;
-require_once('../vendor/autoload.php');
+use App\Models\AnnonceModel;
+use App\Models\PostModel;
 
+require_once('../vendor/autoload.php');
 
 
 
 $main = new Main();
 
 
-
-
 $main->start();
+
+
+
+
+
+
+
+
+

@@ -11,7 +11,7 @@ class PostModel extends Model
     protected $titre;
     protected $message;
     protected $actif;
-    public $table = "post";
+    protected $table = "post";
     /**
      * Get the value of id
      */

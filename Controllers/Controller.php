@@ -8,6 +8,6 @@ class Controller
     {
         extract($tab);
 
-        require_once 'Views/' . $fichier . 'php';
+        require_once '../Views/' . $fichier . '.php';
     }
 }
