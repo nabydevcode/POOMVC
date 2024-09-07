@@ -23,10 +23,10 @@ class Main
             $controller = new $controller;
 
             $action = (isset($params[0])) ? array_shift($params) : 'index';
-
-
             if (method_exists($controller, $action)) {
                 (isset($params[0])) ? call_user_func_array([$controller, $action], $params) : $controller->$action();
+            } else {
+                echo " Methode n'existe pas 404";
             }
 
         }

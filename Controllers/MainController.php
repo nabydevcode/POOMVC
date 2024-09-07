@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Controllers;
+use App\Controllers\Controller;
 
-class MainController
+
+class MainController extends Controller
 {
 
     public function index()
     {
-
-        echo " Une methode de la main controller ";
+        return $this->render('/home', []);
     }
 }

@@ -35,11 +35,11 @@ class Model extends Database
         $valeurs = [];
         foreach ($indice as $key => $value) {
             $champs = $key;
-            $valeurs = $value;
+            $valeurs[] = $value;
         }
         $sql = $this->prepe('SELECT * FROM ' . $this->table . ' WHERE ' . $champs . '=?', $valeurs);
 
-        return $sql;
+        return $sql->fetchAll();
     }
     public function delete(int $id)
     {

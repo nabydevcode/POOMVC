@@ -8,6 +8,10 @@ class Controller
     {
         extract($tab);
 
+
+        ob_start();
         require_once '../Views/' . $fichier . '.php';
+        $contenue = ob_get_clean();
+        require '../Views/defaulf.php';
     }
 }

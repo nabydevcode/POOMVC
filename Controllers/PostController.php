@@ -17,5 +17,12 @@ class PostController extends Controller
 
         return $this->render('poste/index', ['donnee' => $donnee]);
     }
+    public function findbycible()
+    {
+        $postbycile = new PostModel();
+        $donnee = $postbycile->findByIndice(['actif' => 1]);
+        return $this->render('poste/findallbycible', ['donnee' => $donnee]);
+    }
+
 
 }
