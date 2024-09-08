@@ -9,6 +9,6 @@ class MainController extends Controller
 
     public function index()
     {
-        return $this->render('/home', []);
+        return $this->render('/home');
     }
 }

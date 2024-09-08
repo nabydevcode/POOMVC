@@ -5,6 +5,8 @@ use AltoRouter;
 class Main
 {
 
+
+
     public function start()
     {
         // Initialiser AltoRouter
@@ -19,6 +21,7 @@ class Main
             // Extraire le contrôleur et l'action de la route correspondante
             list($controllerName, $action) = explode('#', $match['target']);
             $controllerClass = "\\App\\Controllers\\" . ucfirst($controllerName);
+
             if (class_exists($controllerClass)) {
                 $controller = new $controllerClass();
                 $action = isset($action) ? filter_var($action, FILTER_SANITIZE_SPECIAL_CHARS) : 'index';
