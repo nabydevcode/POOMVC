@@ -1,38 +1,47 @@
 <?php
 namespace App\Core;
-
+use AltoRouter;
 
 class Main
 {
+
     public function start()
     {
-        $uri = $_SERVER['REQUEST_URI'];
-
-        if (!empty($uri) && $uri[-1] === '/' && substr($uri, -1)) {
-            $uri = rtrim($uri, '/');
-            http_response_code(301);
-            header('Location: ' . $uri);
-        }
-
-        $params = [];
-        if (isset($_GET['p']) && !empty($_GET['p']))
-            $params = explode('/', trim($_GET['p'], '/'));
-        if (isset($params[0]) && $params[0] != '') {
-            $param = array_shift($params);
-            $controller = "\\App\\Controllers\\" . ucfirst($param) . "Controller";
-            $controller = new $controller;
-
-            $action = (isset($params[0])) ? array_shift($params) : 'index';
-            if (method_exists($controller, $action)) {
-                (isset($params[0])) ? call_user_func_array([$controller, $action], $params) : $controller->$action();
+        // Initialiser AltoRouter
+        $router = new AltoRouter();
+        // Définir les routes
+        $router->map('GET', '/', 'MainController#index');
+        $router->map('GET', '/{controller}[/{action}[/{id}]]', 'Controller#action');
+        // Trouver la correspondance
+        $match = $router->match();
+        // Traiter la correspondance
+        if ($match) {
+            // Extraire le contrôleur et l'action de la route correspondante
+            list($controllerName, $action) = explode('#', $match['target']);
+            $controllerClass = "\\App\\Controllers\\" . ucfirst($controllerName);
+            if (class_exists($controllerClass)) {
+                $controller = new $controllerClass();
+                $action = isset($action) ? filter_var($action, FILTER_SANITIZE_SPECIAL_CHARS) : 'index';
+                if (method_exists($controller, $action)) {
+                    // Appeler la méthode avec les paramètres restants
+                    $methodParams = $match['params'];
+                    call_user_func_array([$controller, $action], $methodParams);
+                } else {
+                    // Si la méthode n'existe pas, afficher une erreur
+                    http_response_code(404);
+                    echo "Erreur 404 : La méthode {$action} n'existe pas.";
+                    exit();
+                }
             } else {
-                echo " Methode n'existe pas 404";
+                // Si le contrôleur n'existe pas, afficher une erreur
+                http_response_code(404);
+                echo "Erreur 404 : Le contrôleur {$controllerName} n'existe pas.";
+                exit();
             }
-
+        } else {
+            // Rediriger vers une page d'accueil ou une action par défaut
+            $defaultController = new \App\Controllers\MainController();
+            $defaultController->index();
         }
-
-
-
-
     }
 }

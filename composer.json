@@ -14,5 +14,7 @@
             "email": "condenabytoure123@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "altorouter/altorouter": "^2.0"
+    }
 }
