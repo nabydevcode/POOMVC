@@ -47,7 +47,7 @@
     </nav>
 
     <div class="text-center">
-        <a href="/index.php?p=/post/index">Voir la Liste des Annonces</a>
+        <a href="<?= $router->generate('post_list') ?>">Voir la Liste des Annonces</a>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

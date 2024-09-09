@@ -11,10 +11,8 @@ class PostController extends Controller
 {
     public function index()
     {
-
         $annonce = new PostModel();
         $donnee = $annonce->findAll();
-
         return $this->render('poste/index', ['donnee' => $donnee]);
     }
     public function findbycible()

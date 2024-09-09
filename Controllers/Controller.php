@@ -11,7 +11,7 @@ class Controller
         extract($tab);
 
         ob_start();
-        require('../Views' . $fichier . '.php');
+        require('../Views/' . $fichier . '.php');
         $contenue = ob_get_clean();
         require_once('../Views/' . $templates . '.php');
     }

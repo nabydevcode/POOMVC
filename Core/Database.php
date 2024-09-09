@@ -17,6 +17,7 @@ class Database extends PDO
         try {
             parent::__construct($dsn);
             $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
         } catch (PDOException $e) {
             die('Connection failed: ' . $e->getMessage());
         }
